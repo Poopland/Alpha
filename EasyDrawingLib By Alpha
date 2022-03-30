@@ -1,5 +1,5 @@
-getgenv().AllLinesLib = {}
-getgenv().draw = function(Name,Type,Position,Properties)
+getgenv().AllLinesLib = getgenv().AllLinesLib or {}
+getgenv().draw = getgenv().draw or function(Name,Type,Position,Properties)
     local OBJ = Drawing.new(Type)
     Properties = Properties or {}
     if Type == "Line" then
