@@ -1,0 +1,63 @@
+getgenv().AllLinesLib = {}
+getgenv().draw = function(Name,Type,Position,Properties)
+    local OBJ = Drawing.new(Type)
+    Properties = Properties or {}
+    if Type == "Line" then
+        OBJ.From = Position[1]
+        OBJ.To = Position[2]
+    elseif Type == "Text" then
+        OBJ.Center = Position
+    elseif Type == "Image" then
+        OBJ.Position = Position[1]
+        OBJ.Size = Position[2]
+    elseif Type == "Circle" then
+        OBJ.Position = Position
+    elseif Type == "Quad" then
+        OBJ.PointA = Position[1]
+        OBJ.PointB = Position[2]
+        OBJ.PointC = Position[3]
+        OBJ.PointD = Position[4]
+    end
+    OBJ.Color = Properties.Color or Color3.fromRGB(255, 255, 255)
+    for i,v in pairs(Properties) do
+        OBJ[i] = v
+    end
+    if Name then
+        AllLinesLib[Name] = OBJ
+    else
+        table.insert(AllLinesLib,OBJ)
+    end
+    local RT = {}
+    function RT:Remove()
+        OBJ:Remove()
+    end
+    return setmetatable(RT,{
+        __index = function(t,k)
+            return OBJ[k] or t[k]
+        end,
+        __call = function(t, ...)
+            local args = {...}
+            if args[1] == "SetVisible" or args[1] == "Show" then
+                OBJ.Visible = args[2]
+            elseif args[1] == "SetThick" or args[1] == "Thickness" then
+                OBJ.Thickness = args[2]
+            elseif args[1] == "SetOpacity" or args[1] == "Transparency" then
+                OBJ.Transparency = args[2]
+            elseif args[1] == "Set" and args[2] and args[3] then
+                OBJ[args[2]] = args[3]
+            else
+                error("Invail Commands")
+            end
+        end,
+        __newindex = function(t,k,v)
+            local rt = OBJ
+            pcall(function()
+                if not OBJ[k] then
+                    rt = t
+                end
+            end)
+            rt[k] = v
+            return rt[k]
+        end,
+    })
+end
