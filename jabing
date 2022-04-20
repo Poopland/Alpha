@@ -1,3 +1,5 @@
 do
-${MainScript}
+    if false then
+        MainScript()
+    end
 end
