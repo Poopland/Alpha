@@ -225,7 +225,6 @@ function boxBase:Update()
 			self.Components.Distance.Color = color
             local HealthCompt = self.Components.Health
             if HealthCompt and ESP.Health then
-                print("WTF")
                 local hum = self.Object:FindFirstChildOfClass("Humanoid")
                 HealthCompt.Visible = true
                 HealthCompt.Position = Vector2.new(TagPos.X, TagPos.Y - 14)
