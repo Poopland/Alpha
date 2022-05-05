@@ -227,16 +227,18 @@ function boxBase:Update()
             if HealthCompt then
                 HealthCompt.Visible = true
                 HealthCompt.Position = Vector2.new(TagPos.X, TagPos.Y - 14)
-                HealthCompt.Text = "HP : " .. math.floor(HealthCompt.Health) .. "/" .. math.floor(HealthCompt.MaxHealth)
+                HealthCompt.Text = "HP : " .. math.floor(HealthCompt.Human.Health) .. "/" .. math.floor(HealthCompt.Human.MaxHealth)
                 HealthCompt.Color = color
             end
 		else
 			self.Components.Name.Visible = false
 			self.Components.Distance.Visible = false
+            self.Components.Health.Visible = false
 		end
 	else
 		self.Components.Name.Visible = false
 		self.Components.Distance.Visible = false
+        self.Components.Health.Visible = false
 	end
 	if ESP.Tracers then
 		local TorsoPos, Vis6 = WorldToViewportPoint(cam, locs.Torso.p)
