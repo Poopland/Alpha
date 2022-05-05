@@ -224,21 +224,29 @@ function boxBase:Update()
 			self.Components.Distance.Text = math.floor((cam.CFrame.p - cf.p).magnitude) .. "m away"
 			self.Components.Distance.Color = color
             local HealthCompt = self.Components.Health
-            if HealthCompt then
+            if HealthCompt and ESP.Health then
+                print("WTF")
+                local hum = self.Object:FindFirstChildOfClass("Humanoid")
                 HealthCompt.Visible = true
                 HealthCompt.Position = Vector2.new(TagPos.X, TagPos.Y - 14)
-                HealthCompt.Text = "HP : " .. math.floor(HealthCompt.Human.Health) .. "/" .. math.floor(HealthCompt.Human.MaxHealth)
+                HealthCompt.Text = "HP : " .. math.floor(hum.Health) .. "/" .. math.floor(hum.MaxHealth)
                 HealthCompt.Color = color
+            else
+                HealthCompt.Visible = false
             end
 		else
 			self.Components.Name.Visible = false
 			self.Components.Distance.Visible = false
-            self.Components.Health.Visible = false
+            if self.Components.Health then
+                self.Components.Health.Visible = false
+            end
 		end
 	else
 		self.Components.Name.Visible = false
 		self.Components.Distance.Visible = false
-        self.Components.Health.Visible = false
+        if self.Components.Health then
+            self.Components.Health.Visible = false
+        end
 	end
 	if ESP.Tracers then
 		local TorsoPos, Vis6 = WorldToViewportPoint(cam, locs.Torso.p)
@@ -298,13 +306,12 @@ function ESP:Add(obj, options)
 		Size = 19,
 		Visible = self.Enabled and self.Names
 	})
-    local Humanoid = obj:FindFirstChildOfClass("Humanoid")
-    if self.Health and Humanoid then
+    local hum = obj:FindFirstChildOfClass("Humanoid")
+    if self.Health and hum then
         box.Components["Health"] = Draw("Text", {
             Color = box.Color,
             Center = true,
             Outline = true,
-            Human = Humanoid,
             Size = 19,
             Visible = self.Enabled and self.Health
         })
@@ -326,7 +333,6 @@ function ESP:Add(obj, options)
 			box:Remove()
 		end
 	end)
-	local hum = obj:FindFirstChildOfClass("Humanoid")
 	if hum then
 		hum.Died:Connect(function()
 			if ESP.AutoRemove ~= false then
