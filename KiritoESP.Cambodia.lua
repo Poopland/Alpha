@@ -100,12 +100,12 @@ function ESP:AddObjectListener(parent, options)
 		if type(options.Type) == "string" and c:IsA(options.Type) or options.Type == nil then
 			if type(options.Name) == "string" and c.Name == options.Name or options.Name == nil then
 				if not options.Validator or options.Validator(c) then
-					local box = ESP:Add(c, {
+					local box = ESP:Add(c,{
 						PrimaryPart = type(options.PrimaryPart) == "string" and c:WaitForChild(options.PrimaryPart) or type(options.PrimaryPart) == "function" and options.PrimaryPart(c),
 						Color = type(options.Color) == "function" and options.Color(c) or options.Color,
 						ColorDynamic = options.ColorDynamic,
 						Name = type(options.CustomName) == "function" and options.CustomName(c) or options.CustomName,
-						IsEnabled = options.IsEnabled,
+						IsEnabled = type(options.IsEnabled) == "function" and options.IsEnabled(c) or options.IsEnabled,
 						RenderInNil = options.RenderInNil
 					})
                     --TODO: add a better way of passing options
@@ -224,14 +224,16 @@ function boxBase:Update()
 			self.Components.Distance.Text = math.floor((cam.CFrame.p - cf.p).magnitude) .. "m away"
 			self.Components.Distance.Color = color
             local HealthCompt = self.Components.Health
-            if HealthCompt and ESP.Health then
-                local hum = self.Object:FindFirstChildOfClass("Humanoid")
-                HealthCompt.Visible = true
-                HealthCompt.Position = Vector2.new(TagPos.X, TagPos.Y - 14)
-                HealthCompt.Text = "HP : " .. math.floor(hum.Health) .. "/" .. math.floor(hum.MaxHealth)
-                HealthCompt.Color = color
-            else
-                HealthCompt.Visible = false
+            if HealthCompt then
+                if ESP.Health then
+                    local hum = self.Object:FindFirstChildOfClass("Humanoid")
+                    HealthCompt.Visible = true
+                    HealthCompt.Position = Vector2.new(TagPos.X, TagPos.Y - 14)
+                    HealthCompt.Text = "HP : " .. math.floor(hum.Health) .. "/" .. math.floor(hum.MaxHealth)
+                    HealthCompt.Color = color
+                else
+                    HealthCompt.Visible = false
+                end
             end
 		else
 			self.Components.Name.Visible = false
