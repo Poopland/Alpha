@@ -136,7 +136,7 @@ function boxBase:Remove()
 	ESP.Objects[self.Object] = nil
 	for i, v in pairs(self.Components) do
 		v.Visible = false
-		v:Remove()
+		v:Remove() 
 		self.Components[i] = nil
 	end
 end
@@ -307,7 +307,7 @@ function ESP:Add(obj, options)
 		Size = 19,
 		Visible = self.Enabled and self.Names
 	})
-    local hum = obj:FindFirstChildOfClass("Humanoid")
+    local hum = obj:FindFirstChild("HumanoidRootPart") and obj:WaitForChild("Humanoid",1)
     if self.Health and hum then
         box.Components["Health"] = Draw("Text", {
             Color = box.Color,
