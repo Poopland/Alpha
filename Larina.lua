@@ -2027,7 +2027,9 @@ do
                 local nTable = {};
 
                 for Value, Bool in next, Val do
-                    if table.find(Dropdown.Values, Value) then
+                    if type(Bool) ~= "boolean" and table.find(Dropdown.Values, Value) then
+                        nTable[Value] = true
+                    elseif Dropdown.Values[Value] ~= nil and Bool then
                         nTable[Value] = true
                     end;
                 end;
