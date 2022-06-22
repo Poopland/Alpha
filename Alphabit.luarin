@@ -1,6 +1,6 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Poopland/Alpha/Loader/"..({
   [994732206] = "BloxFruit",  
-  [2655311011] = "Anime Dimension",
-  [1720936166] = "All Star",
-  [2324662457] = "Anime Fighters",
+  [2655311011] = "Anime%20Dimension",
+  [1720936166] = "All%20Star",
+  [2324662457] = "Anime%20Fighters",
 })[game.GameId]))()
