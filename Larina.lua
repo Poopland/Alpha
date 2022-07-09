@@ -28,10 +28,10 @@ local Library = {
     HudRegistry = {};
 
     FontColor = Color3.fromRGB(255, 255, 255);
-    MainColor = Color3.fromRGB(28, 28, 28);
-    BackgroundColor = Color3.fromRGB(20, 20, 20);
-    AccentColor = Color3.fromRGB(0, 85, 255);
-    OutlineColor = Color3.fromRGB(50, 50, 50);
+    MainColor = Color3.fromRGB(40, 40, 40);
+    BackgroundColor = Color3.fromRGB(36, 36, 36);
+    AccentColor = Color3.fromRGB(0, 151, 255);
+    OutlineColor = Color3.fromRGB(36, 36, 36);
 
     Black = Color3.new(0, 0, 0);
 
@@ -486,7 +486,7 @@ do
             PlaceholderText = 'RGB color',
             TextColor3 = Library.FontColor,
         })
-
+        
         local DisplayLabel = Library:CreateLabel({
             Size = UDim2.new(1, 0, 0, 14);
             Position = UDim2.fromOffset(5, 5);
