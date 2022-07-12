@@ -1,6 +1,6 @@
 local Priority = {
     Activity = nil,
-    Weight = 0,
+    Weightness = 0,
     Start = 0,
     Classes = {},
 }
@@ -10,9 +10,9 @@ function Priority:set(Data,Skip)
     if type(Data) == "string" then
         Value = self:get(Data)
     end
-    if (not self.Activity or Skip) and self.Weight < Value.Weight then
+    if (not self.Activity or Skip) and self.Weightness < Value.Weight then
         self.Activity = Value.Class
-        self.Weight = Value.Weight
+        self.Weightness = Value.Weight
         self.Start = tick()
         Value.LastActive = self.Start
         return true
@@ -25,7 +25,7 @@ function Priority:clear(Data)
     end
     if Value.Class ~= self.Activity or Value.LastActive ~= self.Start then return end
     self.Activity = nil
-    self.Weight = 0
+    self.Weightness = 0
     self.Start = 0
     return true
 end
