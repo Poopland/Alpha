@@ -30,6 +30,11 @@ function Maid.ClearMaid(Signal)
     end
 end
 function Maid.new(Signal,data)
+	if type(data) == "function" then
+		data = {
+			func = data,
+		}
+	end
     data.Cooldown = 0
     local Cont = Signal:Connect(function(...)
         if data.delay then
@@ -50,13 +55,4 @@ function Maid.new(Signal,data)
     return CCont
 end
 
---[[
-  local Client = game.Players.LocalPlayer
-  Maid.ClearMaid(game.RunService.Stepped)
-  Maid.new(game.RunService.Stepped,{
-      func = function()
-          print("WOWO")
-      end,
-      delay = 1,
-  }):Disconnect()
-]]
+return Maid
