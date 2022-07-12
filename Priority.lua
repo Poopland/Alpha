@@ -18,6 +18,15 @@ function Priority:set(Data,Skip)
         return true
     end
 end
+function Priority:check(Data,Skip)
+    local Value = Data
+    if type(Data) == "string" then
+        Value = self:get(Data)
+    end
+    if (not self.Activity or Skip) and self.Weightness < Value.Weight then
+        return true
+    end
+end
 function Priority:clear(Data)
     local Value = Data
     if type(Data) == "string" then
