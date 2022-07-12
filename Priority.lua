@@ -15,12 +15,19 @@ function Priority:set(Data,Skip)
         self.Weight = Value.Weight
         self.Start = tick()
         Value.LastActive = self.Start
+        return true
     end
 end
-function Priority:clear()
+function Priority:clear(Data)
+    local Value = Data
+    if type(Data) == "string" then
+        Value = self:get(Data)
+    end
+    if Value.Class ~= self.Activity or Value.LastActive ~= self.Start then return end
     self.Activity = nil
     self.Weight = 0
     self.Start = 0
+    return true
 end
 function Priority:get(name)
     for i=1,#self.Classes do local v = self.Classes[i]
