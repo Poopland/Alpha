@@ -68,15 +68,7 @@ getgenv().Tlib = {
 			else
 				_Distance = (Vector3.new(C.X,0,C.Z) - Vector3.new(self.lastData[2].X,0,self.lastData[2].Z)).magnitude
 			end
-			if _Distance > 3000 then SubSpeed = 150 end
-			if _Distance <= 3000 then SubSpeed = 175 end
-			if _Distance <= 2000 then SubSpeed = 200 end
-			if _Distance <= 1500 then SubSpeed = 225 end
-			if _Distance <= 1000 then SubSpeed = 250 end
-			if _Distance <= 500 then SubSpeed = 300 end
-			if _Distance <= 400 then SubSpeed = 325 end
-			if _Distance <= 300 then SubSpeed = 350 end
-			if _Distance <= 200 then SubSpeed = 375 end
+			SubSpeed = 280
 			warn(_Distance,SubSpeed)
 			if _Distance < 2500 then
 				Height = C.Y + 20
