@@ -15,7 +15,7 @@ function Priority:set(Data,Skip)
         Value = self
         self = Priority
     end
-    if (not self.Activity or Skip) and self.Weightness < Value.Weight then
+    if (not self.Activity or (Skip and Value.Skipable)) and self.Weightness < Value.Weight then
         self.Activity = Value.Class
         self.Weightness = Value.Weight
         self.Recently = Value
@@ -68,6 +68,7 @@ function Priority.new(Class,Weight)
     local Value = setmetatable({},WeightBase)
     Value.Class = Class ~= "" and Class or "Undifined"
     Value.Weight = Weight or #Value.Classes + 1
+    Value.Skipable = true
     Value.LastActive = 0
     table.insert(Priority.Classes,Value)
     table.sort(Priority.Classes,function(a,b)
