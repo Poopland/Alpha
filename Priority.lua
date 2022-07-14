@@ -33,7 +33,7 @@ function Priority:check(Data,Skip)
         Value = self
         self = Priority
     end
-    if (not self.Activity or Skip) and self.Weightness < Value.Weight then
+    if (not self.Activity or Skip) and self.Weightness < Value.Weight or self.Recently == Value then
         return true
     end
 end
