@@ -27,6 +27,10 @@ function Priority:check(Data,Skip)
     if type(Data) == "string" then
         Value = self:get(Data)
     end
+    if rawget(self,"Weight") then
+        Value = self
+        self = Priority
+    end
     if (not self.Activity or Skip) and self.Weightness < Value.Weight then
         return true
     end
@@ -35,6 +39,10 @@ function Priority:clear(Data)
     local Value = Data
     if type(Data) == "string" then
         Value = self:get(Data)
+    end
+    if rawget(self,"Weight") then
+        Value = self
+        self = Priority
     end
     if Value.Class ~= self.Activity or Value.LastActive ~= self.Start then return end
     self.Activity = nil
