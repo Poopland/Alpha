@@ -10,6 +10,10 @@ function Priority:set(Data,Skip)
     if type(Data) == "string" then
         Value = self:get(Data)
     end
+    if rawget(self,"Weight") then
+        Value = self
+        self = Priority
+    end
     if (not self.Activity or Skip) and self.Weightness < Value.Weight then
         self.Activity = Value.Class
         self.Weightness = Value.Weight
