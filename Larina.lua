@@ -88,6 +88,7 @@ function Library:CreateLabel(Properties, IsHud)
         TextColor3 = Library.FontColor;
         TextSize = 16;
         TextStrokeTransparency = 0;
+        RichText = true,
     });
 
     Library:AddToRegistry(_Instance, {
@@ -1013,6 +1014,7 @@ do
             RichText = true,
             TextXAlignment = Enum.TextXAlignment.Left;
             ZIndex = 5;
+            RichText = true,
             Parent = Container;
         });
 
@@ -1098,6 +1100,7 @@ do
             TextSize = 14;
             Text = Text;
             ZIndex = 6;
+            RichText = true,
             Parent = ButtonInner;
         });
 
@@ -1232,6 +1235,7 @@ do
             TextXAlignment = Enum.TextXAlignment.Left;
             ZIndex = 5;
             Parent = Container;
+            RichText = true,
         });
 
         Groupbox:AddBlank(1);
@@ -1438,6 +1442,7 @@ do
             TextXAlignment = Enum.TextXAlignment.Left;
             ZIndex = 6;
             Parent = ToggleInner;
+            RichText = true,
         });
 
         Library:Create('UIListLayout', {
@@ -1543,6 +1548,7 @@ do
                 TextYAlignment = Enum.TextYAlignment.Bottom;
                 ZIndex = 5;
                 Parent = Container;
+                RichText = true,
             });
 
             Groupbox:AddBlank(3);
@@ -1605,6 +1611,7 @@ do
             Text = 'Infinite';
             ZIndex = 9;
             Parent = SliderInner;
+            RichText = true,
         });
 
         Library:OnHighlight(SliderOuter, SliderOuter,
@@ -1726,6 +1733,7 @@ do
             TextXAlignment = Enum.TextXAlignment.Left;
             TextYAlignment = Enum.TextYAlignment.Bottom;
             ZIndex = 5;
+            RichText = true,
             Parent = Container;
         });
 
@@ -1789,6 +1797,7 @@ do
             TextXAlignment = Enum.TextXAlignment.Left;
             TextWrapped = true;
             ZIndex = 7;
+            RichText = true,
             Parent = DropdownInner;
         });
 
@@ -1925,6 +1934,7 @@ do
                     Text = Value;
                     TextXAlignment = Enum.TextXAlignment.Left;
                     ZIndex = 25;
+                    RichText = true,
                     Parent = Button;
                 });
 
@@ -2181,6 +2191,7 @@ do
         TextSize = 14;
         TextXAlignment = Enum.TextXAlignment.Left;
         ZIndex = 203;
+        RichText = true,
         Parent = InnerFrame;
     });
 
@@ -2230,7 +2241,7 @@ do
         Size = UDim2.new(1, 0, 0, 20);
         Position = UDim2.fromOffset(5, 2),
         TextXAlignment = Enum.TextXAlignment.Left,
-        
+        RichText = true,
         Text = 'Keybinds';
         ZIndex = 104;
         Parent = KeybindInner;
@@ -2334,6 +2345,7 @@ function Library:Notify(Text, Time)
         TextXAlignment = Enum.TextXAlignment.Left;
         TextSize = 14;
         ZIndex = 103;
+        RichText = true,
         Parent = InnerFrame;
     });
 
@@ -2422,6 +2434,7 @@ function Library:CreateWindow(...)
         Text = Config.Title or '';
         TextXAlignment = Enum.TextXAlignment.Left;
         ZIndex = 1;
+        RichText = true,
         Parent = Inner;
     });
 
@@ -2511,6 +2524,7 @@ function Library:CreateWindow(...)
             Position = UDim2.new(0, 0, 0, 0);
             Size = UDim2.new(1, 0, 1, -1);
             Text = Name;
+            RichText = true,
             ZIndex = 1;
             Parent = TabButton;
         });
@@ -2649,6 +2663,7 @@ function Library:CreateWindow(...)
                 Text = Info.Name;
                 TextXAlignment = Enum.TextXAlignment.Left;
                 ZIndex = 5;
+                RichText = true,
                 Parent = BoxInner;
             });
 
@@ -2777,6 +2792,7 @@ function Library:CreateWindow(...)
                     TextXAlignment = Enum.TextXAlignment.Center;
                     ZIndex = 7;
                     Parent = Button;
+                    RichText = true,
                 });
 
                 local Block = Library:Create('Frame', {
