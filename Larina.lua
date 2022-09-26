@@ -88,7 +88,6 @@ function Library:CreateLabel(Properties, IsHud)
         TextColor3 = Library.FontColor;
         TextSize = 16;
         TextStrokeTransparency = 0;
-        RichText = true,
     });
 
     Library:AddToRegistry(_Instance, {
@@ -147,7 +146,7 @@ function Library:AddToolTip(InfoStr, HoverInstance)
         TextColor3 = Library.FontColor,
         TextXAlignment = Enum.TextXAlignment.Left;
         ZIndex = 12;
-
+        RichText = true,
         Parent = Tooltip;
     });
 
@@ -495,6 +494,7 @@ do
             TextSize = 14;
             Text = ColorPicker.Title,--Info.Default;
             TextWrapped = false;
+            RichText = true,
             ZIndex = 16;
             Parent = PickerFrameInner;
         });
@@ -1015,6 +1015,7 @@ do
             TextXAlignment = Enum.TextXAlignment.Left;
             ZIndex = 5;
             RichText = true,
+            RichText = true,
             Parent = Container;
         });
 
@@ -1099,6 +1100,7 @@ do
             Size = UDim2.new(1, 0, 1, 0);
             TextSize = 14;
             Text = Text;
+            RichText = true,
             ZIndex = 6;
             RichText = true,
             Parent = ButtonInner;
@@ -1234,6 +1236,7 @@ do
             Text = Info.Text;
             TextXAlignment = Enum.TextXAlignment.Left;
             ZIndex = 5;
+            RichText = true,
             Parent = Container;
             RichText = true,
         });
