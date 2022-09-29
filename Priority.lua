@@ -33,6 +33,7 @@ function Priority:check(Data,Skip)
         Value = self
         self = Priority
     end
+    if type(Data) == "boolean" then Skip = Data end
     if (not self.Activity or (Skip and Value.Skipable)) and self.Weightness < Value.Weight or self.Recently == Value then
         return true
     end
