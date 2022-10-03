@@ -65,12 +65,13 @@ WeightBase.__index = Priority
 WeightBase.__tostring = function(self)
     return string.format("%s : [ %s ]",self.Class,self.Weight)
 end
-function Priority.new(Class,Weight)
+function Priority.new(Class,Weight,CanSkip)
     local Value = setmetatable({},WeightBase)
     Value.Class = Class ~= "" and Class or "Undifined"
     Value.Weight = Weight or #Value.Classes + 1
     Value.Skipable = true
     Value.LastActive = 0
+    Value.CanSkip = CanSkip or {}
     table.insert(Priority.Classes,Value)
     table.sort(Priority.Classes,function(a,b)
         return a.Weight < b.Weight
