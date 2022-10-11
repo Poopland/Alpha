@@ -15,7 +15,7 @@ function Priority:set(Data,Skip)
         Value = self
         self = Priority
     end
-    if (not self.Activity or (Skip and Value.Skipable)) and self.Weightness < Value.Weight then
+    if self.Recently ~= Value and Value:check(Skip) then
         self.Activity = Value.Class
         self.Weightness = Value.Weight
         self.Recently = Value
@@ -34,7 +34,7 @@ function Priority:check(Data,Skip)
         self = Priority
     end
     if type(Data) == "boolean" then Skip = Data end
-    if (not self.Activity or (Skip and Value.Skipable)) and self.Weightness < Value.Weight or self.Recently == Value then
+    if (not self.Activity or (Skip and Value.Skipable)) and (self.Weightness < Value.Weight or table.find(Priority.Recently.CanSkip,self.Class)) or self.Recently == Value then
         return true
     end
 end
