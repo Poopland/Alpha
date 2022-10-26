@@ -4,6 +4,7 @@ local Priority = {
     Recently = nil,
     Start = 0,
     Classes = {},
+    Currently = nil,
 }
 Priority.__index = Priority
 function Priority:set(Data,Skip)
@@ -15,8 +16,9 @@ function Priority:set(Data,Skip)
         Value = self
         self = Priority
     end
-    if self.Activity ~= Value.Class and Value:check(Skip) then
+    if self.Currently ~= Value and Value:check(Skip) then
         self.Activity = Value.Class
+        self.Currently = Value
         self.Weightness = Value.Weight
         self.Recently = Value
         self.Start = tick()
@@ -34,7 +36,7 @@ function Priority:check(Data,Skip)
         self = Priority
     end
     if type(Data) == "boolean" then Skip = Data end
-    if (not self.Activity or (Skip and Value.Skipable)) and (self.Weightness < Value.Weight or table.find(Priority.Recently.CanSkip,self.Class)) or self.Recently == Value then
+    if (not self.Activity or (Skip and Value.Skipable)) and (self.Weightness < Value.Weight or table.find(Priority.Currently.CanSkip,self.Class)) or self.Currently == Value then
         return true
     end
 end
@@ -49,6 +51,7 @@ function Priority:clear(Data)
     end
     if not Value or Value.Class ~= self.Activity or Value.LastActive ~= self.Start then return end
     self.Activity = nil
+    self.Currently = nil
     self.Weightness = 0
     self.Start = 0
     return true
