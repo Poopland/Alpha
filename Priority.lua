@@ -15,7 +15,7 @@ function Priority:set(Data,Skip)
         Value = self
         self = Priority
     end
-    if self.Recently ~= Value and Value:check(Skip) then
+    if self.Activity ~= Class and Value:check(Skip) then
         self.Activity = Value.Class
         self.Weightness = Value.Weight
         self.Recently = Value
