@@ -40,6 +40,18 @@ function Priority:check(Data,Skip)
         return true
     end
 end
+function Priority:isActive(Data,Skip)
+    local Value = Data
+    if type(Data) == "string" then
+        Value = self:get(Data)
+    end
+    if rawget(self,"Weight") then
+        Value = self
+        self = Priority
+    end
+    if type(Data) == "boolean" then Skip = Data end
+    return self.Currently == Value
+end
 function Priority:clear(Data)
     local Value = Data
     if type(Data) == "string" then
