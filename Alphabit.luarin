@@ -5,4 +5,5 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Poopland/Alpha/Loader
   [1720936166] = "All%20Star",
   [2324662457] = "Anime%20Fighters",
   [1176784616] = "Tower%20Defense%20Simulator",
+  [1451439645] = "King%20Legacy",
 })[game.GameId]))()
