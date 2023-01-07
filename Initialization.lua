@@ -1,5 +1,5 @@
 repeat wait() until game:IsLoaded()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Poopland/Alpha/Loader/"..({
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Poopland/AlphaV2/main/"..({
   [994732206] = "BloxFruit",  
   [2655311011] = "Anime%20Dimension",
   [1720936166] = "All%20Star",
